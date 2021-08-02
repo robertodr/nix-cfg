@@ -100,42 +100,42 @@ in
 
   environment = {
     systemPackages = with pkgs; [
-      acpi
-      age
-      atool
-      binutils
-      borgbackup
-      brave
-      cacert
-      coreutils
-      cryptsetup
-      curl
-      dmidecode
-      file
-      findutils
-      gnupg1
-      keybase-gui
-      neovim
-      pass
-      patchelf
-      pciutils
-      poetry
-      psmisc
-      rsync
-      sops
-      squashfsTools
-      tree
-      unrar
-      unzip
-      usbutils
-      wget
-      which
-      xbindkeys
-      xclip
-      xdg_utils
-      xorg.lndir
-      xsel
-      zip
+      acpi          # show battery status and other ACPI information
+      age           # modern encryption tool with small explicit keys
+      atool         # archive command line helper
+      binutils      # tools for manipulating binaries (linker, assembler, etc.)
+      borgbackup    # deduplicating archiver with compression and encryption
+      brave         # privacy-oriented browser for Desktop and Laptop computers
+      cacert        # a bundle of X.509 certificates of public Certificate Authorities (CA)
+      coreutils     # the basic file, shell and text manipulation utilities of the GNU operating system
+      cryptsetup    # LUKS for dm-crypt
+      curl          # a command line tool for transferring files with URL syntax
+      dmidecode     # a tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
+      file          # a program that shows the type of files
+      findutils     # gNU Find Utilities, the basic directory searching utilities of the GNU operating system
+      gnupg1        # modern (2.1) release of the GNU Privacy Guard, a GPL OpenPGP implementation with symbolic links for gpg and gpgv
+      keybase-gui   # the Keybase official GUI
+      neovim        # vim text editor fork focused on extensibility and agility
+      pass          # stores, retrieves, generates, and synchronizes passwords securely
+      patchelf      # a small utility to modify the dynamic linker and RPATH of ELF executables
+      pciutils      # a collection of programs for inspecting and manipulating configuration of PCI devices
+      poetry        # python dependency management and packaging made easy
+      psmisc        # a set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+      rsync         # a fast incremental file transfer utility
+      sops          # mozilla sops (Secrets OPerationS) is an editor of encrypted files
+      squashfsTools # tool for creating and unpacking squashfs filesystems
+      tree          # command to produce a depth indented directory listing
+      unrar         # utility for RAR archives
+      unzip         # an extraction utility for archives compressed in .zip format
+      usbutils      # tools for working with USB devices, such as lsusb
+      wget          # tool for retrieving files using HTTP, HTTPS, and FTP
+      which         # shows the full path of (shell) commands
+      xbindkeys     # launch shell commands with your keyboard or your mouse under X Window
+      xclip         # tool to access the X clipboard from a console application
+      xdg-utils     # a set of command line tools that assist applications with a variety of desktop integration tasks
+      xorg.lndir    # create a shadow directory of symbolic links to another directory tree
+      xsel          # command-line program for getting and setting the contents of the X selection
+      zip           # compressor/archiver for creating and modifying zipfiles
     ];
   };
 
