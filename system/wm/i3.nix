@@ -4,12 +4,14 @@
   programs.dconf.enable = true;
 
   services = {
-    gnome.gnome-keyring.enable = true;
+    blueman.enable = true;
 
     dbus = {
       enable = true;
       packages = [ pkgs.gnome3.dconf ];
     };
+
+    gnome.gnome-keyring.enable = true;
 
     xserver = {
       enable = true;
@@ -63,10 +65,9 @@
         extraPackages = with pkgs; [ multilockscreen ];
       };
     };
+
+    upower.enable = true;
   };
 
-  services.blueman.enable = true;
-
-  upower.enable = true;
   systemd.services.upower.enable = true;
 }
