@@ -73,6 +73,7 @@ in
   nixpkgs = {
     config = baseConfig // {
       packageOverrides = pkgs: {
+        google-fonts = unstable.google-fonts;
         kbfs = unstable.kbfs;
         keybase = unstable.keybase;
         keybase-gui = unstable.keybase-gui;
