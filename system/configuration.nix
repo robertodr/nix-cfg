@@ -11,43 +11,40 @@ let
 in
 {
   imports = [
+    # hardware configuration from nixos-hardware
     "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/x1/7th-gen"
+    # flox
     (import (fetchTarball "https://github.com/flox/nixos-module/archive/master.tar.gz"))
+    # results of hardware scan
     ./hardware-configuration.nix
+    # user configuration
     ./users.nix
+    # services
     ./services.nix
+    # fonts configuration
     ./fonts.nix
+    # machine-specific configuration
+    machine/pulsedemon.nix
+    # window manager
+    wm/i3.nix
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot = {
-    kernel = {
-      sysctl = {
-        "kernel.perf_event_paranoid" = 0;
-      };
-    };
-    loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-      grub.device = "/dev/nvme0n1";
-    };
-    initrd.luks.devices = {
-      root = {
-        device = "/dev/nvme0n1p3";
-        preLVM = true;
-      };
-    };
+  # Select internationalisation properties.
+  console = {
+    keyMap = "us";
   };
 
-  networking = {
-    hostName = "pulsedemon";
-    networkmanager.enable = true;
-    useDHCP = false;
-    interfaces = {
-      enp0s31f6.useDHCP = true;
-      wlp0s20f3.useDHCP = true;
-    };
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
   };
+
+  # Set your time zone.
+  # Home: "Europe/Stockholm";
+  time.timeZone = "Europe/Stockholm";
+  # Virginia
+  #time.timeZone = "America/New_York";
+  # Colorado
+  #time.timeZone = "America/Denver";
 
   nix = {
     # automate `nix-store --optimise`
@@ -67,12 +64,6 @@ in
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
-
-    # avoid unwanted garbage collection when using nix-direnv
-    extraOptions = ''
-      keep-outputs     = true
-      keep-derivations = true
-    '';
 
     nixPath = options.nix.nixPath.default ++ [
       "nixpkgs-overlays=/etc/nixos/overlays-compat/"
@@ -107,26 +98,10 @@ in
     ];
   };
 
-  # Select internationalisation properties.
-  console = {
-    keyMap = "us";
-  };
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-  };
-
-  # Set your time zone.
-  # Home: "Europe/Stockholm";
-  time.timeZone = "Europe/Stockholm";
-  # Virginia
-  #time.timeZone = "America/New_York";
-  # Colorado
-  #time.timeZone = "America/Denver";
-
   environment = {
     systemPackages = with pkgs; [
       acpi
+      age
       atool
       binutils
       borgbackup
@@ -162,7 +137,6 @@ in
       xsel
       zip
     ];
-    gnome.excludePackages = with pkgs.gnome3; [ epiphany geary totem ];
   };
 
   programs = {
