@@ -11,8 +11,6 @@
       packages = [ pkgs.gnome3.dconf ];
     };
 
-    gnome.gnome-keyring.enable = true;
-
     xserver = {
       enable = true;
 
