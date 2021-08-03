@@ -55,7 +55,23 @@
           enable = true;
           # FIXME
           #background = ;
-          greeters.enso.enable = true;
+          greeters.gtk = {
+            enable = true;
+            iconTheme = {
+              name = "ePapirus";
+              package = pkgs.papirus-icon-theme;
+            };
+            indicators =
+              [
+                "~host"
+                "~spacer"
+                "~clock"
+                "~spacer"
+                "~session"
+                "~power"
+              ];
+            clock-format = "%H:%M - %A, %B %d %Y";
+          };
         };
       };
 

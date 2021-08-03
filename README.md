@@ -4,11 +4,22 @@ NixOS and home-manager configuration files.
 
 Inspired from:
 
-* https://gvolpe.com/blog/xmonad-polybar-nixos/ and https://github.com/gvolpe/nix-config/ 
+* For the system-level/home-level separation:
+  https://gvolpe.com/blog/xmonad-polybar-nixos/ and
+  https://github.com/gvolpe/nix-config/ 
+* For the use of [Mozilla SOPS](https://github.com/mozilla/sops) for file-level
+  encryption: https://github.com/cole-mickens/nixcfg
 
 ## System-level configuration
 
-This is the folder structure:
+After editing files, run:
+
+```shell
+$ sudo cp -r system/* /etc/nixos
+$ sudo nixos-rebuild switch --repair --upgrade
+```
+
+### Folder structure and file content
 
 ```text
 system
