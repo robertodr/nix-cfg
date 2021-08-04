@@ -78,7 +78,6 @@ in
         keybase = unstable.keybase;
         keybase-gui = unstable.keybase-gui;
         poetry = unstable.poetry;
-        virtualbox = unstable.virtualbox;
       };
       permittedInsecurePackages = [
         "openssh-with-gssapi-8.4p1"
