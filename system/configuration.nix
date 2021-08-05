@@ -12,7 +12,9 @@ in
 {
   imports = [
     # hardware configuration from nixos-hardware
-    "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/lenovo/thinkpad/x1/7th-gen"
+    "${builtins.fetchTarball "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz"}/lenovo/thinkpad/x1/7th-gen"
+    # sops-nix
+    "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     # flox
     (import (fetchTarball "https://github.com/flox/nixos-module/archive/master.tar.gz"))
     # results of hardware scan
