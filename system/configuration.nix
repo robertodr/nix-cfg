@@ -75,6 +75,7 @@ in
   nixpkgs = {
     config = baseConfig // {
       packageOverrides = pkgs: {
+        betterlockscreen = unstable.betterlockscreen;
         google-fonts = unstable.google-fonts;
         kbfs = unstable.kbfs;
         keybase = unstable.keybase;
@@ -101,20 +102,20 @@ in
   };
 
   environment = {
+    # TODO clean up this list, i.e. move stuff to home-manager
     systemPackages = with pkgs; [
       acpi # show battery status and other ACPI information
       age # modern encryption tool with small explicit keys
       atool # archive command line helper
       binutils # tools for manipulating binaries (linker, assembler, etc.)
       borgbackup # deduplicating archiver with compression and encryption
-      brave # privacy-oriented browser for Desktop and Laptop computers
       cacert # a bundle of X.509 certificates of public Certificate Authorities (CA)
       coreutils # the basic file, shell and text manipulation utilities of the GNU operating system
       cryptsetup # LUKS for dm-crypt
       curl # a command line tool for transferring files with URL syntax
       dmidecode # a tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
       file # a program that shows the type of files
-      findutils # gNU Find Utilities, the basic directory searching utilities of the GNU operating system
+      findutils # GNU Find Utilities, the basic directory searching utilities of the GNU operating system
       gnupg1 # modern (2.1) release of the GNU Privacy Guard, a GPL OpenPGP implementation with symbolic links for gpg and gpgv
       keybase-gui # the Keybase official GUI
       neovim # vim text editor fork focused on extensibility and agility
@@ -142,7 +143,6 @@ in
   };
 
   programs = {
-    browserpass.enable = true;
     light.enable = true;
     singularity.enable = true;
     ssh.package = pkgs.openssh_gssapi_heimdal;

@@ -77,8 +77,8 @@
         enable = true;
         package = pkgs.i3-gaps;
         extraPackages = with pkgs; [
+          betterlockscreen
           i3-resurrect
-          multilockscreen
         ];
       };
     };
