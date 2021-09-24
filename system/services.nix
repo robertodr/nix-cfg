@@ -2,7 +2,7 @@
 
 {
   services = {
-    flox.substituterAdded = true;
+    #flox.substituterAdded = true;
 
     borgbackup.jobs = {
       roberto = rec {
@@ -36,7 +36,6 @@
     kbfs.enable = true;
     keybase.enable = true;
     printing.enable = true;
-    thermald.enable = true;
   };
 
   systemd = {

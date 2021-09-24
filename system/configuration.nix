@@ -16,7 +16,7 @@ in
     # sops-nix
     "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     # flox
-    (import (fetchTarball "https://github.com/flox/nixos-module/archive/master.tar.gz"))
+    #(import (fetchTarball "https://github.com/flox/nixos-module/archive/master.tar.gz"))
     # results of hardware scan
     ./hardware-configuration.nix
     # user configuration
@@ -118,6 +118,7 @@ in
       findutils # GNU Find Utilities, the basic directory searching utilities of the GNU operating system
       gnupg1 # modern (2.1) release of the GNU Privacy Guard, a GPL OpenPGP implementation with symbolic links for gpg and gpgv
       keybase-gui # the Keybase official GUI
+      libseccomp # High level library for the Linux Kernel seccomp filter
       neovim # vim text editor fork focused on extensibility and agility
       pass # stores, retrieves, generates, and synchronizes passwords securely
       patchelf # a small utility to modify the dynamic linker and RPATH of ELF executables
@@ -146,6 +147,11 @@ in
     light.enable = true;
     singularity.enable = true;
     ssh.package = pkgs.openssh_gssapi_heimdal;
+    # enable in 21.11
+    #weylus = {
+    #  enable = true;
+    #  users = [ "roberto" ];
+    #};
   };
 
   virtualisation = {
@@ -155,7 +161,6 @@ in
     };
     virtualbox.host = {
       enable = true;
-      enableExtensionPack = true;
     };
   };
 
