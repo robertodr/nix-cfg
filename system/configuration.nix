@@ -52,6 +52,12 @@ in
     # automate `nix-store --optimise`
     autoOptimiseStore = true;
 
+    binaryCaches = [ "https://nix-community.cachix.org/" ];
+
+    binaryCachePublicKeys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+
     buildCores = 2;
 
     # required by Cachix to be used as non-root user
@@ -98,6 +104,11 @@ in
           };
         }
       )
+      (import (builtins.fetchGit {
+        url = "https://github.com/nix-community/emacs-overlay.git";
+        ref = "master";
+        rev = "5fa26165cf34adbe693b159093ea15f24f7f7ea4";
+      }))
     ];
   };
 
