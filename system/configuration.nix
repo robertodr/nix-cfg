@@ -60,11 +60,10 @@ in
 
     buildCores = 2;
 
-    # required by Cachix to be used as non-root user
-    trustedUsers = [
-      "root"
-      "roberto"
-    ];
+    extraOptions = ''
+      keep-outputs = true
+      keep-derivations = true
+    '';
 
     # automate garbage collection
     gc = {
@@ -75,6 +74,12 @@ in
 
     nixPath = options.nix.nixPath.default ++ [
       "nixpkgs-overlays=/etc/nixos/overlays-compat/"
+    ];
+
+    # required by Cachix to be used as non-root user
+    trustedUsers = [
+      "root"
+      "roberto"
     ];
   };
 
