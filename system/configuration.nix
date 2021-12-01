@@ -163,11 +163,10 @@ in
     light.enable = true;
     singularity.enable = true;
     ssh.package = pkgs.openssh_gssapi_heimdal;
-    # enable in 21.11
-    #weylus = {
-    #  enable = true;
-    #  users = [ "roberto" ];
-    #};
+    weylus = {
+      enable = true;
+      users = [ "roberto" ];
+    };
   };
 
   virtualisation = {
@@ -180,7 +179,7 @@ in
     };
   };
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 
   krb5 = {
     enable = true;
