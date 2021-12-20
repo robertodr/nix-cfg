@@ -13,8 +13,6 @@ in
   imports = [
     # hardware configuration from nixos-hardware
     "${builtins.fetchTarball "https://github.com/NixOS/nixos-hardware/archive/master.tar.gz"}/lenovo/thinkpad/x1/7th-gen"
-    # sops-nix
-    "${builtins.fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     # flox
     #(import (fetchTarball "https://github.com/flox/nixos-module/archive/master.tar.gz"))
     # results of hardware scan
@@ -63,6 +61,7 @@ in
     extraOptions = ''
       keep-outputs = true
       keep-derivations = true
+      experimental-features = nix-command flakes
     '';
 
     # automate garbage collection
@@ -75,6 +74,8 @@ in
     nixPath = options.nix.nixPath.default ++ [
       "nixpkgs-overlays=/etc/nixos/overlays-compat/"
     ];
+
+    package = pkgs.nix_2_4;
 
     # required by Cachix to be used as non-root user
     trustedUsers = [
@@ -112,7 +113,7 @@ in
       (import (builtins.fetchGit {
         url = "https://github.com/nix-community/emacs-overlay.git";
         ref = "master";
-        rev = "5fa26165cf34adbe693b159093ea15f24f7f7ea4";
+        rev = "18a1276506aedee059671415cce1a87381fceaec";
       }))
     ];
   };
@@ -142,7 +143,6 @@ in
       poetry # python dependency management and packaging made easy
       psmisc # a set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
       rsync # a fast incremental file transfer utility
-      sops # mozilla sops (Secrets OPerationS) is an editor of encrypted files
       squashfsTools # tool for creating and unpacking squashfs filesystems
       tree # command to produce a depth indented directory listing
       unrar # utility for RAR archives
@@ -166,6 +166,7 @@ in
     weylus = {
       enable = true;
       users = [ "roberto" ];
+      openFirewall = true;
     };
   };
 
