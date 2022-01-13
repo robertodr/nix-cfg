@@ -22,22 +22,6 @@
   };
 
   hardware = {
-    pulseaudio = {
-      enable = true;
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
-      package = pkgs.pulseaudioFull;
-      extraConfig = "load-module module-switch-on-connect";
-      configFile = pkgs.writeText "default.pa" ''
-        load-module module-bluetooth-policy
-        load-module module-bluetooth-discover
-        ## module fails to load with
-        ##   module-bluez5-device.c: Failed to get device path from module arguments
-        ##   module.c: Failed to load module "module-bluez5-device" (argument: ""): initialization failed.
-        # load-module module-bluez5-device
-        # load-module module-bluez5-discover
-      '';
-    };
-
     bluetooth = {
       enable = true;
       hsphfpd.enable = true;
@@ -55,9 +39,46 @@
     };
   };
 
+  security.rtkit.enable = true;
+
   services = {
     hardware = {
       bolt.enable = true;
+    };
+
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      media-session.config.bluez-monitor.rules = [
+        {
+          # Matches all cards
+          matches = [{ "device.name" = "~bluez_card.*"; }];
+          actions = {
+            "update-props" = {
+              "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+              # mSBC is not expected to work on all headset + adapter combinations.
+              "bluez5.msbc-support" = true;
+              # SBC-XQ is not expected to work on all headset + adapter combinations.
+              "bluez5.sbc-xq-support" = true;
+            };
+          };
+        }
+        {
+          matches = [
+            # Matches all sources
+            { "node.name" = "~bluez_input.*"; }
+            # Matches all outputs
+            { "node.name" = "~bluez_output.*"; }
+          ];
+          actions = {
+            "node.pause-on-idle" = false;
+          };
+        }
+      ];
     };
 
     thermald.enable = true;
