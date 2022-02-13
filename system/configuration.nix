@@ -113,7 +113,7 @@ in
       (import (builtins.fetchGit {
         url = "https://github.com/nix-community/emacs-overlay.git";
         ref = "master";
-        rev = "57378ea2f62e9f450f420dc9d01cc06e0d3dd15e";
+        rev = "31e9b8c9f4d69d47625efb2510815ec5f529b20c";
       }))
     ];
   };
