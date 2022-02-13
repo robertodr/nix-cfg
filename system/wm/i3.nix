@@ -51,8 +51,7 @@
         defaultSession = "none+i3";
         lightdm = {
           enable = true;
-          # FIXME
-          #background = ;
+          background = ./background-image;
           greeters.gtk = {
             enable = true;
             iconTheme = {
