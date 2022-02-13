@@ -39,9 +39,22 @@
     };
   };
 
-  security.rtkit.enable = true;
+  security = {
+    rtkit.enable = true;
+    pam.services = {
+      i3lock-color.fprintAuth = true;
+      i3lock.fprintAuth = true;
+      login.fprintAuth = true;
+      xscreensaver.fprintAuth = true;
+    };
+  };
 
   services = {
+    # fingerprint reader: login and unlock with fingerprint (if you add one with `fprintd-enroll`)
+    fprintd = {
+      enable = true;
+    };
+
     hardware = {
       bolt.enable = true;
     };
@@ -59,11 +72,17 @@
           matches = [{ "device.name" = "~bluez_card.*"; }];
           actions = {
             "update-props" = {
-              "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
               # mSBC is not expected to work on all headset + adapter combinations.
               "bluez5.msbc-support" = true;
               # SBC-XQ is not expected to work on all headset + adapter combinations.
               "bluez5.sbc-xq-support" = true;
+              "bluez5.reconnect-profiles" = [ "hfp_hf" "hsp_hs" "a2dp_sink" ];
+              # LDAC encoding quality
+              # Available values: auto (Adaptive Bitrate, default)
+              #                   hq   (High Quality, 990/909kbps)
+              #                   sq   (Standard Quality, 660/606kbps)
+              #                   mq   (Mobile use Quality, 330/303kbps)
+              "bluez5.a2dp.ldac.quality" = "hq";
             };
           };
         }
