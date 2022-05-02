@@ -75,7 +75,7 @@ in
       "nixpkgs-overlays=/etc/nixos/overlays-compat/"
     ];
 
-    package = pkgs.nix_2_4;
+    package = unstable.nix;
 
     # required by Cachix to be used as non-root user
     trustedUsers = [
@@ -113,7 +113,8 @@ in
       (import (builtins.fetchGit {
         url = "https://github.com/nix-community/emacs-overlay.git";
         ref = "master";
-        rev = "31e9b8c9f4d69d47625efb2510815ec5f529b20c";
+        rev =
+          "2191e9676590a1220683cceabaf9bf07da145a0c";
       }))
     ];
   };
@@ -175,8 +176,9 @@ in
       enable = true;
       enableOnBoot = false;
     };
-    virtualbox.host = {
-      enable = true;
+    virtualbox = {
+      host.enable = true;
+      guest.enable = true;
     };
   };
 
