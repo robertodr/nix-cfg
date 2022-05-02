@@ -87,12 +87,12 @@ in
   nixpkgs = {
     config = baseConfig // {
       packageOverrides = pkgs: {
+        _1password = unstable._1password;
+        _1password-gui = unstable._1password-gui;
         betterlockscreen = unstable.betterlockscreen;
-        google-fonts = unstable.google-fonts;
         kbfs = unstable.kbfs;
         keybase = unstable.keybase;
         keybase-gui = unstable.keybase-gui;
-        poetry = unstable.poetry;
       };
       permittedInsecurePackages = [
         "openssh-with-gssapi-8.4p1"
@@ -122,8 +122,9 @@ in
   environment = {
     # TODO clean up this list, i.e. move stuff to home-manager
     systemPackages = with pkgs; [
+      _1password
+      _1password-gui
       acpi # show battery status and other ACPI information
-      age # modern encryption tool with small explicit keys
       atool # archive command line helper
       binutils # tools for manipulating binaries (linker, assembler, etc.)
       borgbackup # deduplicating archiver with compression and encryption
@@ -134,6 +135,7 @@ in
       dmidecode # a tool that reads information about your system's hardware from the BIOS according to the SMBIOS/DMI standard
       file # a program that shows the type of files
       findutils # GNU Find Utilities, the basic directory searching utilities of the GNU operating system
+      gnome.nautilus # file manager
       gnupg1 # modern (2.1) release of the GNU Privacy Guard, a GPL OpenPGP implementation with symbolic links for gpg and gpgv
       keybase-gui # the Keybase official GUI
       libseccomp # High level library for the Linux Kernel seccomp filter
