@@ -11,6 +11,7 @@
       comfortaa
       corefonts # Microsoft free fonts
       dejavu_fonts
+      fira
       fira-code
       fira-code-symbols
       gyre-fonts

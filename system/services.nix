@@ -35,7 +35,10 @@
     fwupd.enable = true;
     kbfs.enable = true;
     keybase.enable = true;
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.gutenprint pkgs.gutenprintBin ];
+    };
   };
 
   systemd = {
