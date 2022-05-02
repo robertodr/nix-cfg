@@ -41,19 +41,19 @@
 
   security = {
     rtkit.enable = true;
-    pam.services = {
-      i3lock-color.fprintAuth = true;
-      i3lock.fprintAuth = true;
-      login.fprintAuth = true;
-      xscreensaver.fprintAuth = true;
-    };
+    #pam.services = {
+    #  i3lock-color.fprintAuth = true;
+    #  i3lock.fprintAuth = true;
+    #  login.fprintAuth = true;
+    #  xscreensaver.fprintAuth = true;
+    #};
   };
 
   services = {
     # fingerprint reader: login and unlock with fingerprint (if you add one with `fprintd-enroll`)
-    fprintd = {
-      enable = true;
-    };
+    #fprintd = {
+    #  enable = true;
+    #};
 
     hardware = {
       bolt.enable = true;
