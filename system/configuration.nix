@@ -105,9 +105,9 @@ in
             withKerberos = true;
             libkrb5 = post.heimdalFull;
           };
-          borgbackup = pre.borgbackup.override {
-            openssh = post.openssh_gssapi_heimdal;
-          };
+          #borgbackup = pre.borgbackup.override {
+          #  openssh = post.openssh_gssapi_heimdal;
+          #};
         }
       )
       (import (builtins.fetchGit {
@@ -140,6 +140,7 @@ in
       keybase-gui # the Keybase official GUI
       libseccomp # High level library for the Linux Kernel seccomp filter
       neovim # vim text editor fork focused on extensibility and agility
+      #openssh_gssapi_heimdal
       pass # stores, retrieves, generates, and synchronizes passwords securely
       patchelf # a small utility to modify the dynamic linker and RPATH of ELF executables
       pciutils # a collection of programs for inspecting and manipulating configuration of PCI devices
@@ -165,7 +166,7 @@ in
   programs = {
     light.enable = true;
     singularity.enable = true;
-    ssh.package = pkgs.openssh_gssapi_heimdal;
+    #ssh.package = pkgs.openssh_gssapi_heimdal;
     weylus = {
       enable = true;
       users = [ "roberto" ];
