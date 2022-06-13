@@ -75,7 +75,7 @@ in
       "nixpkgs-overlays=/etc/nixos/overlays-compat/"
     ];
 
-    package = unstable.nix;
+    #package = unstable.nix;
 
     # required by Cachix to be used as non-root user
     trustedUsers = [
@@ -103,7 +103,7 @@ in
         post: pre: {
           openssh_gssapi_heimdal = pre.openssh_gssapi.override {
             withKerberos = true;
-            libkrb5 = post.heimdalFull;
+            libkrb5 = post.heimdal;
           };
           #borgbackup = pre.borgbackup.override {
           #  openssh = post.openssh_gssapi_heimdal;
@@ -113,8 +113,7 @@ in
       (import (builtins.fetchGit {
         url = "https://github.com/nix-community/emacs-overlay.git";
         ref = "master";
-        rev =
-          "2191e9676590a1220683cceabaf9bf07da145a0c";
+        rev = "bc9fa0906efbf7f767837682483136b1e4a0bf4d";
       }))
     ];
   };
@@ -185,11 +184,11 @@ in
     };
   };
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 
   krb5 = {
     enable = true;
-    kerberos = pkgs.heimdalFull;
+    kerberos = pkgs.heimdal;
     domain_realm = {
       ".pdc.kth.se" = "NADA.KTH.SE";
     };
