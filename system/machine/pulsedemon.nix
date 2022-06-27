@@ -28,9 +28,14 @@
     };
   };
 
+  # fixes to get eduroam working: https://bbs.archlinux.org/viewtopic.php?pid=1751610#p1751610
   networking = {
+    dhcpcd.enable = false;
     hostName = "pulsedemon";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      dhcp = "internal";
+    };
     useDHCP = false;
     interfaces = {
       enp0s31f6.useDHCP = true;
